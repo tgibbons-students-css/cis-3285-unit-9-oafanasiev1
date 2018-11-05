@@ -26,12 +26,25 @@ namespace SingleResponsibilityPrinciple
                 return false;
             }
 
+
+
+
             int tradeAmount;
             if (!int.TryParse(tradeData[1], out tradeAmount))
             {
                 logger.LogWarning("Trade not a valid integer: '{0}'", tradeData[1]);
                 return false;
             }
+
+            int tradeAmount1;
+            int.TryParse(tradeData[1], out tradeAmount1);
+            if (tradeAmount1 < 1000 || tradeAmount1 > 100000)
+            {
+                 logger.LogWarning("Trade must be within the range of 1000 and 100000", tradeData[1]);
+                return false;
+            }
+
+
 
             decimal tradePrice;
             if (!decimal.TryParse(tradeData[2], out tradePrice))
